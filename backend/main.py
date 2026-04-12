@@ -16,4 +16,4 @@ app.include_router(resume.router)
 
 @app.get("/")
 def home():
-    return {"message": "GETJOB AI Backend Running 🚀"}
+    return {"message": "GETJOB AI Backend Running 🚀"}  

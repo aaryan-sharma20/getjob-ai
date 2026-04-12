@@ -1,4 +1,11 @@
 from PyPDF2 import PdfReader
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 SKILLS_DB = [
     "python", "java", "c++", "machine learning", "deep learning",
@@ -47,3 +54,30 @@ def calculate_resume_score(skills):
         suggestions.append("Add projects section to your resume")
 
     return score, suggestions
+
+def get_resume_feedback(text):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"""
+Analyze this resume and provide:
+
+1. Strengths
+2. Weaknesses
+3. Suggestions for improvement
+
+Resume:
+{text}
+"""
+                }
+            ]
+        )
+
+        return response.choices[0].message.content
+
+    except Exception as e:
+        print("AI Error:", e)
+        return "AI feedback not available"

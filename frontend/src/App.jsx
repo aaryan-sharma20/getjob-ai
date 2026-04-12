@@ -30,7 +30,7 @@ function App() {
     try {
       setLoading(true);
 
-      const response = await fetch("https://getjob-ai-backend-1uka.onrender.com/upload-resume/", {
+      const response = await fetch("http://127.0.0.1:8000/upload-resume/", {
         method: "POST",
         body: formData,
       });
@@ -211,6 +211,20 @@ function App() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+            {result?.feedback && (
+              <div style={{
+                marginTop: "20px",
+                padding: "15px",
+                borderRadius: "10px",
+                backgroundColor: "black",
+                color: "white"
+              }}>
+                <h3>🧠 AI Resume Feedback</h3>
+                <pre style={{ whiteSpace: "pre-wrap" }}>
+                  {result.feedback}
+                </pre>
               </div>
             )}
           </>
