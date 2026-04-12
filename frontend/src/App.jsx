@@ -30,7 +30,7 @@ function App() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://127.0.0.1:8000/upload-resume/", {
+      const response = await fetch("https://getjob-ai-backend-luka.onrender.com/upload-resume/", {
         method: "POST",
         body: formData,
       });
