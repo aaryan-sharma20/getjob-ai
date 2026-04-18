@@ -12,7 +12,7 @@ APP_KEY = os.getenv("ADZUNA_APP_KEY")
 def get_real_jobs(skills):
     query = " OR ".join(skills[:3])
 
-    url = "https://api.adzuna.com/v1/api/jobs/us/search/1"
+    url = "https://api.adzuna.com/v1/api/jobs/in/search/1"
 
     params = {
         "app_id": APP_ID,
