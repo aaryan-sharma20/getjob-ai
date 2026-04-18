@@ -80,7 +80,9 @@ Get-jobs-AI/
 
 ## 🌍 Live Demo
 
-🔗 https://your-render-link.onrender.com
+🔗 https://https://getjob-ai-backend-1uka.onrender.com/
+
+🔗 https://getjob-ai.vercel.app/
 
 ---
 
@@ -89,74 +91,53 @@ Get-jobs-AI/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/Get-jobs-AI.git
+git clone https://github.com/aaryan-sharma20/Get-jobs-AI.git
 cd Get-jobs-AI
 ```
 
 ## Backend setup
-cd backend
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --reload
+- cd backend
+- python -m venv venv
+- venv\Scripts\activate
+- pip install -r requirements.txt
+- uvicorn main:app --reload
 
 ## Frontend setup
-cd frontend
-npm install
-npm run dev
+- cd frontend
+- npm install
+- npm run dev
 
 ## Enviornment variables
-OPENAI_API_KEY=your_key_here
-ADZUNA_APP_ID=your_id_here
-ADZUNA_APP_KEY=your_key_here
+- OPENAI_API_KEY=your_key_here
+- ADZUNA_APP_ID=your_id_here
+- ADZUNA_APP_KEY=your_key_here
 
 ## Challenges Faced
-API integration errors (400, JSON issues)
-Deployment issues (missing dependencies)
-Environment variable handling
-Real-time API debugging
-Fallback handling for failed APIs
+- API integration errors (400, JSON issues)
+- Deployment issues (missing dependencies)
+- Environment variable handling
+- Real-time API debugging
+- Fallback handling for failed APIs
 
 ## Future improvements
-Job filters (location, salary)
-User authentication
-Resume history tracking
-Better UI animations
-Mobile optimization
+- Job filters (location, salary)
+- User authentication
+- Resume history tracking
+- Better UI animations
+- Mobile optimization
 
 ## Learning Outcomes
-Full-stack development (React + FastAPI)
-API integration
-Deployment on Render
-Debugging real-world problems
-Handling production-level issues
+- Full-stack development (React + FastAPI)
+- API integration
+- Deployment on Render
+- Debugging real-world problems
+- Handling production-level issues
 
 ## Author
-
 Aaryan Sharma
 
-🎓 B.Tech CSE (AI & ML)
-💡 Interested in AI, Web Development & Real-world projects
+- 🎓 B.Tech CSE (AI & ML)
+- 💡 Interested in AI, Web Development & Real-world projects
 
 
 ---
-
-# ✅ WHAT YOU NEED TO CHANGE (ONLY 2 THINGS)
-
-Before saving:
-
-👉 Replace:
-- `your-render-link`  
-- `your-username`
-
----
-
-# 🚀 DONE
-
-After pasting:
-
-```bash
-git add README.md
-git commit -m "docs: add professional README"
-git push
-```
