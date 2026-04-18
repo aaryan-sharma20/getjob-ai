@@ -58,7 +58,7 @@ function App() {
       
       {/* SIDEBAR */}
       <div className="w-64 bg-gray-900/80 backdrop-blur-lg p-6 border-r border-gray-800">
-        <h1 className="text-xl font-bold mb-6">GETJOB AI 🚀</h1>
+        <h1 className="text-2xl font-bold mb-6 text-white">🚀 GETJOB AI</h1>
         <ul className="space-y-4 text-gray-400">
           <li className="hover:text-white hover:translate-x-1 transition cursor-pointer">
             Dashboard
@@ -74,7 +74,12 @@ function App() {
 
       {/* MAIN */}
       <div className="flex-1 p-8">
-        <h2 className="text-2xl font-semibold mb-6">Dashboard</h2>
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-white">DASHBOARD</h2>
+          <p className="text-gray-400 text-sm mt-1">
+            Analyze your resume performance and insights
+          </p>
+        </div>
 
         {/* UPLOAD */}
         <div className="max-w-xl mx-auto mb-8 bg-gray-800/60 backdrop-blur-lg p-6 rounded-2xl border border-gray-700 text-center">
@@ -104,9 +109,9 @@ function App() {
         {result && (
           <>
             {/* STATS */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               
-              <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700">
+              <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700 hover:scale-[1.02] transition">
                 <p className="text-gray-400 text-sm">Resume Score</p>
                 <p
                   className={`text-2xl font-bold ${
@@ -121,14 +126,14 @@ function App() {
                 </p>
               </div>
 
-              <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700">
+              <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700 hover:scale-[1.02] transition">
                 <p className="text-gray-400 text-sm">Skills Found</p>
                 <p className="text-2xl font-bold">
                   {result.skills?.length || 0}
                 </p>
               </div>
 
-              <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700">
+              <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700 hover:scale-[1.02] transition">
                 <p className="text-gray-400 text-sm">Resume</p>
                 <p className="text-sm truncate">
                   {result.filename}
@@ -176,23 +181,50 @@ function App() {
             </div>
 
             {/* JOBS */}
-            <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700">
-              <h3 className="mb-4 font-semibold">Recommended Jobs</h3>
+            {result?.recommended_jobs?.length > 0 && (
+              <div className="mt-6">
+                <h3 className="text-xl font-semibold mb-4">
+                  💼 Job Opportunities
+                </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {result.recommended_jobs?.map((job, index) => (
-                  <div
-                    key={index}
-                    className="bg-gray-700 p-4 rounded-xl hover:bg-gray-600 hover:scale-[1.02] transition transform"
-                  >
-                    <p className="font-semibold">{job}</p>
-                    <p className="text-sm text-gray-400">
-                      Suggested Role
-                    </p>
-                  </div>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {result.recommended_jobs.map((job, index) => (
+                    <div
+                      key={index}
+                      className="bg-gray-800 p-5 rounded-xl border border-gray-700 shadow hover:scale-[1.02] transition"
+                    >
+                      <p className="font-semibold text-white text-lg">
+                        {job.title || job}
+                      </p>
+
+                      {job.company && (
+                        <p className="text-sm text-gray-400">
+                          🏢 {job.company}
+                        </p>
+                      )}
+
+                      {job.location && (
+                        <p className="text-xs text-gray-500 mb-2">
+                          📍 {job.location}
+                        </p>
+                      )}
+
+                      {job.url && (
+                        <a
+                          href={job.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm"
+                        >
+                          Apply Now →
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+
             {/* HISTORY */}
             {history.length > 0 && (
               <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700 mt-6">
@@ -213,18 +245,26 @@ function App() {
                 </div>
               </div>
             )}
+
+            {/* FEEDBACK AI */}
             {result?.feedback && (
-              <div style={{
-                marginTop: "20px",
-                padding: "15px",
-                borderRadius: "10px",
-                backgroundColor: "black",
-                color: "white"
-              }}>
-                <h3>🧠 AI Resume Feedback</h3>
-                <pre style={{ whiteSpace: "pre-wrap" }}>
-                  {result.feedback}
-                </pre>
+              <div className="bg-gray-800/60 backdrop-blur-lg p-4 rounded-xl border border-gray-700 mt-6">
+    
+                <h3 className="mb-4 font-semibold text-blue-400">
+                  🧠 AI Resume Feedback
+                </h3>
+
+                <div className="space-y-3">
+                  {result.feedback.split("\n").map((line, index) => (
+                    <div
+                      key={index}
+                      className="bg-gray-700/50 p-3 rounded-lg text-gray-200"
+                    >
+                      {line}
+                    </div>
+                  ))}
+                </div>
+
               </div>
             )}
           </>

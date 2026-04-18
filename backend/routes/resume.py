@@ -1,7 +1,7 @@
 from fastapi import APIRouter, File, UploadFile
 from services.resume_service import extract_text_from_pdf, extract_skills, calculate_resume_score
-from services.job_service import recommend_jobs
 from services.resume_service import get_resume_feedback
+from services.job_service import get_real_jobs
 
 
 router = APIRouter()
@@ -10,7 +10,18 @@ router = APIRouter()
 async def upload_resume(file: UploadFile = File(...)):
     text = extract_text_from_pdf(file)
     skills = extract_skills(text)
-    jobs = recommend_jobs(skills)
+    jobs = get_real_jobs(skills)
+    if not jobs:
+
+    # fallback if API fails or returns empty
+        jobs = [
+            {
+                "title": "Software Developer",
+                "company": "General Hiring",
+                "location": "India",
+                "url": "https://www.linkedin.com/jobs/"
+            }
+        ]
     score, suggestions = calculate_resume_score(skills)
     try:
         feedback = get_resume_feedback(text)
